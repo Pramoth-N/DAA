@@ -32,10 +32,7 @@ void mergeAscending(vector<int>& nums , int left ,int right , int mid){
     for(int i=0;i<s2;i++){
         rightArray[i] = nums[mid+i+1];
     }
-    // vector<int> leftArray(nums.begin()+left ,nums.begin()+mid+1);
-    // vector<int> rightArray(nums.begin()+mid+1 ,nums.begin()+right+1);
-    // int s1 = leftArray.size();
-    // int s2 = rightArray.size();
+    
     int leftIndex = 0, rightIndex = 0, mergedIndex = left;
     while(leftIndex < s1 && rightIndex < s2) {
         if(leftArray[leftIndex] <= rightArray[rightIndex]){
@@ -57,17 +54,7 @@ void mergeAscending(vector<int>& nums , int left ,int right , int mid){
 }
 
 void mergeDescending(vector<int>& nums , int left ,int right , int mid){
-    // const int s1 = mid - left +1;
-    // const int s2 = right - mid;
-    
-    // int* leftArray = new int[s1];
-    // int* rightArray = new int[s2];
-    // for(int i=0;i<s1;i++){
-    //     leftArray[i] = nums[left+i];
-    // }
-    // for(int i=0;i<s2;i++){
-    //     rightArray[i] = nums[mid+i+1];
-    // }
+   
     vector<int> leftArray(nums.begin()+left ,nums.begin()+mid+1);
     vector<int> rightArray(nums.begin()+mid+1 ,nums.begin()+right+1);
     int s1 = leftArray.size();
@@ -88,8 +75,6 @@ void mergeDescending(vector<int>& nums , int left ,int right , int mid){
         nums[mergedIndex++] = rightArray[rightIndex++];
     }
     
-    // delete[] leftArray;
-    // delete[] rightArray;
 }
 
 void mergeSort(vector<int>& nums, int left , int right , int flag) {
