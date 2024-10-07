@@ -30,6 +30,17 @@ void maxHeapify(vector<int>& heap , int index , int n){
         maxHeapify(heap,rev,n);
     }
 }
+
+void heapup(vector<int>&heap , int index){
+    if(index<0)
+    return;
+    int parent = (index-1)/2;
+    
+    if(heap[index] > heap[parent]){
+        swap(heap[index],heap[parent]);
+        heapup(heap,parent);
+    }
+}
 int main()
 {
     int n;
@@ -37,9 +48,7 @@ int main()
     vector<int> heap(n);
     for(int i=0;i<n;i++){
         cin>>heap[i];
-    }
-    for(int i=n/2-1 ;i>=0;i--) {
-        maxHeapify(heap , i , n);
+        heapup(heap ,i);
     }
     for(int x : heap)
         cout<<x<<" ";
