@@ -21,7 +21,7 @@ Sample Output 1:
 using namespace std;
 
 pair<int, int> longestIncreasingSubsequenceWithMaxSum(const vector<int>& arr, int n) {
-    vector<int> lis(n, 1), maxSum(n, 0);
+    vector<int> dp(n, 1), maxSum(n, 0);
     
     for (int i = 0; i < n; i++) {
         maxSum[i] = arr[i];
@@ -29,21 +29,21 @@ pair<int, int> longestIncreasingSubsequenceWithMaxSum(const vector<int>& arr, in
     
     for (int i = 1; i < n; i++) {
         for (int j = 0; j < i; j++) {
-            if (arr[i] > arr[j] && lis[i] < lis[j] + 1) {
-                lis[i] = lis[j] + 1;
+            if (arr[i] > arr[j] && dp[i] < dp[j] + 1) {
+                dp[i] = dp[j] + 1;
                 maxSum[i] = maxSum[j] + arr[i];
-            } else if (arr[i] > arr[j] && lis[i] == lis[j] + 1) {
+            } else if (arr[i] > arr[j] && dp[i] == dp[j] + 1) {
                 maxSum[i] = max(maxSum[i], maxSum[j] + arr[i]);
             }
         }
     }
-    
-    int maxLength = 0, maxSeqSum = 0;
+
+    int maxLength = 0, maxSeqSum = 0;p
     for (int i = 0; i < n; i++) {
-        if (lis[i] > maxLength) {
-            maxLength = lis[i];
+        if (dp[i] > maxLength) {
+            maxLength = dp[i];
             maxSeqSum = maxSum[i];
-        } else if (lis[i] == maxLength) {
+        } else if (dp[i] == maxLength) {
             maxSeqSum = max(maxSeqSum, maxSum[i]);
         }
     }
