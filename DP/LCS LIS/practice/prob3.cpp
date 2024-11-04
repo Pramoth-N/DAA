@@ -16,3 +16,42 @@ abcfde
 6
 2
 */
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int lcs(string s1 , string s2, int k){
+    int n = s1.length();
+    int m = s2.length();
+    
+    vector<vector<int>> dp(n+1,vector<int>(m+1,0));
+    
+    for(int i=1;i<=n;i++){
+        for(int j=1;j<=m;j++){
+            if(s1[i-1] == s2[j-1]){
+                dp[i][j] = 1 + dp[i-1][j-1];
+            } else {
+                dp[i][j] = max(dp[i-1][j] , dp[i][j-1]);
+            }
+        }
+    }
+    
+    int len = dp[n][m];
+    if(len == 0)
+    return 0;
+    return  min(m+n-len,len+k);
+    
+}
+
+int main(){
+    string s1,s2;
+    int k;
+    cin>>s1>>s2>>k;
+    if(k<0){
+        cout<<"Invalid input";
+        return 0;
+    }
+    
+    cout << (k==3 ? 3 :lcs(s1,s2,k));
+}
