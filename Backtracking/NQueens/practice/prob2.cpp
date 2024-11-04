@@ -15,4 +15,37 @@ Sample Output 1:
 1 2 3
 */
 
-// PENDING
+#include<bits/stdc++.h>
+
+using namespace std;
+
+void permutate(vector<int>& nums, int k){
+
+    for(int i=0;i<k-1;i++){
+        next_permutation(nums.begin(),nums.end());
+    }
+    
+    for(int x : nums){
+        cout<<x<<" ";
+    }
+}
+
+int main(){
+    int n,k;
+    cin>>n>>k;
+    if(n<=0 || k<0 || cin.fail()){
+        cout<<"Invalid input";
+        return 0;
+    }
+    vector<int> nums(n);
+    for(int i=0;i<n;i++){
+        cin>>nums[i];
+        if(nums[i] < 0 || cin.fail()){
+        cout<<"Invalid input";
+        return 0;
+    }
+    }
+    vector<vector<int>> ans;
+    sort(nums.begin(),nums.end());
+    permutate(nums,k);
+}
